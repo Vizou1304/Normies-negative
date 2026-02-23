@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORMIES // NEGATIVE</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#1a1b1c;
+  --surface:#222324;
+  --surface2:#2a2b2c;
+  --border:#3a3b3c;
+  --border2:#4a4b4c;
+  --text:#e3e5e4;
+  --dim:#6a6c6c;
+  --mid:#9a9c9c;
+  --gold:#c49a38;
+  --gold-bg:rgba(196,154,56,.08);
+  --gold-border:rgba(196,154,56,.25);
+  --on:#e3e5e4;
+  --off:#48494b;
+}
+
+body{
+  background:var(--bg);
+  font-family:'Share Tech Mono',monospace;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(227,229,228,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(227,229,228,.03) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0;
+}
+
+.page{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 20px 80px;}
+
+/* HEADER */
+#topbar{
+  height:50px;display:flex;align-items:center;gap:14px;
+  border-bottom:1px solid var(--border);margin-bottom:48px;
+}
+.logo{font-size:10px;letter-spacing:.34em;color:var(--text);}
+.tsep{width:1px;height:14px;background:var(--border);}
+.tagline{font-size:8px;letter-spacing:.18em;color:var(--dim);}
+
+/* MAIN */
+.tool-title{
+  font-size:28px;letter-spacing:.18em;color:var(--text);
+  margin-bottom:6px;
+}
+.tool-sub{
+  font-size:9px;letter-spacing:.2em;color:var(--dim);
+  margin-bottom:36px;line-height:2;
+}
+
+/* INPUT */
+.input-row{display:flex;width:100%;margin-bottom:28px;}
+#nft-in{
+  flex:1;background:var(--surface2);border:1px solid var(--border);border-right:none;
+  color:var(--text);font-family:'Share Tech Mono',monospace;font-size:22px;
+  padding:12px 16px;outline:none;letter-spacing:.08em;
+}
+#nft-in::placeholder{color:var(--dim);}
+#nft-in:focus{border-color:var(--border2);}
+#load-btn{
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--mid);font-family:'Share Tech Mono',monospace;font-size:9px;
+  padding:12px 20px;cursor:pointer;letter-spacing:.16em;transition:all .15s;white-space:nowrap;
+}
+#load-btn:hover{background:var(--surface);color:var(--text);}
+
+#status{font-size:8px;letter-spacing:.14em;color:var(--dim);min-height:14px;margin-bottom:24px;}
+
+/* CANVAS AREA */
+#canvas-wrap{
+  display:none;flex-direction:column;align-items:center;gap:28px;
+}
+#canvas-wrap.show{display:flex;}
+
+.canvases{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;
+}
+
+.canvas-block{display:flex;flex-direction:column;gap:10px;}
+.canvas-label{font-size:8px;letter-spacing:.2em;color:var(--dim);}
+
+canvas{
+  width:100%;aspect-ratio:1;
+  image-rendering:pixelated;display:block;
+  border:1px solid var(--border);
+}
+#canvas-normal{background:#e3e5e4;}
+#canvas-neg{background:#48494b;}
+
+/* BUTTONS */
+.dl-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;}
+
+.dl-btn{
+  background:var(--gold-bg);border:1px solid var(--gold-border);
+  color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:9px;
+  padding:12px;cursor:pointer;letter-spacing:.18em;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.dl-btn:hover{background:rgba(196,154,56,.16);}
+.dl-btn span{font-size:7px;letter-spacing:.1em;color:var(--dim);}
+
+/* SHARE CARD */
+#share-wrap{
+  width:100%;border:1px solid var(--border);background:var(--surface);
+  padding:16px;display:none;flex-direction:column;gap:10px;
+}
+#share-wrap.show{display:flex;}
+.sh-label{font-size:8px;letter-spacing:.2em;color:var(--dim);}
+#share-canvas-wrap{
+  display:flex;gap:16px;align-items:center;
+}
+#share-canvas{
+  width:200px;height:200px;
+  image-rendering:pixelated;
+  border:1px solid var(--border);
+  flex-shrink:0;
+}
+.share-info{display:flex;flex-direction:column;gap:8px;}
+.share-id{font-size:18px;letter-spacing:.08em;color:var(--text);}
+.share-tag{font-size:8px;letter-spacing:.16em;color:var(--dim);}
+
+#dl-share-btn{
+  background:var(--gold-bg);border:1px solid var(--gold-border);
+  color:var(--gold);font-family:'Share Tech Mono',monospace;font-size:9px;
+  padding:11px;cursor:pointer;letter-spacing:.18em;transition:all .2s;width:100%;
+}
+#dl-share-btn:hover{background:rgba(196,154,56,.16);}
+
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div id="topbar">
+    <div class="logo">■ NORMIES // TOOLS</div>
+    <div class="tsep"></div>
+    <div class="tagline">NORMIE NEGATIVE</div>
+  </div>
+
+  <div class="tool-title">NEGATIVE</div>
+  <div class="tool-sub">
+    ENTER A NORMIE ID TO GENERATE THE INVERTED VERSION<br>
+    DOWNLOAD THE NEGATIVE FOR POSTING
+  </div>
+
+  <div class="input-row">
+    <input type="number" id="nft-in" min="0" max="9999" placeholder="0000">
+    <button id="load-btn" onclick="loadNormie()">GENERATE</button>
+  </div>
+  <div id="status"></div>
+
+  <div id="canvas-wrap">
+
+    <div class="canvases">
+      <div class="canvas-block">
+        <div class="canvas-label">■ ORIGINAL</div>
+        <canvas id="canvas-normal" width="40" height="40"></canvas>
+      </div>
+      <div class="canvas-block">
+        <div class="canvas-label">■ NEGATIVE</div>
+        <canvas id="canvas-neg" width="40" height="40"></canvas>
+      </div>
+    </div>
+
+    <div class="dl-row">
+      <button class="dl-btn" onclick="download('normal')">
+        ■ DOWNLOAD ORIGINAL
+        <span>PNG · 400×400</span>
+      </button>
+      <button class="dl-btn" onclick="download('neg')">
+        ■ DOWNLOAD NEGATIVE
+        <span>PNG · 400×400</span>
+      </button>
+    </div>
+
+    <div id="share-wrap">
+      <div class="sh-label">■ SHARE CARD — READY TO POST</div>
+      <div id="share-canvas-wrap">
+        <canvas id="share-canvas" width="400" height="400"></canvas>
+        <div class="share-info">
+          <div class="share-id" id="share-id-label">NORMIE #0000</div>
+          <div class="share-tag">NORMIES // NEGATIVE</div>
+          <div class="share-tag" style="margin-top:8px;color:var(--dim);">normies.art</div>
+        </div>
+      </div>
+      <button id="dl-share-btn" onclick="downloadShare()">■ DOWNLOAD SHARE CARD</button>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+const API='https://api.normies.art/normie';
+const C_ON =[0x48,0x49,0x4b];
+const C_OFF=[0xe3,0xe5,0xe4];
+let currentId=null;
+let currentPixels=null;
+
+function setStatus(m){document.getElementById('status').textContent=m?'■ '+m:'';}
+
+async function loadNormie(){
+  const raw=document.getElementById('nft-in').value;
+  const id=parseInt(raw);
+  if(isNaN(id)||id<0||id>9999){setStatus('INVALID ID — MUST BE 0 TO 9999');return;}
+  setStatus('LOADING NORMIE #'+String(id).padStart(4,'0')+'...');
+  try{
+    const r=await fetch(`${API}/${id}/pixels`);
+    if(!r.ok) throw new Error('NORMIE #'+id+' NOT FOUND');
+    const px=(await r.text()).trim();
+    currentId=id;
+    currentPixels=px;
+    drawBoth(px);
+    drawShareCard(id,px);
+    document.getElementById('canvas-wrap').classList.add('show');
+    document.getElementById('share-wrap').classList.add('show');
+    document.getElementById('share-id-label').textContent='NORMIE #'+String(id).padStart(4,'0');
+    setStatus('NORMIE #'+String(id).padStart(4,'0')+' GENERATED');
+  }catch(e){
+    setStatus('ERROR: '+e.message);
+  }
+}
+
+function drawCanvas(canvasId, pixels, invert){
+  const canvas=document.getElementById(canvasId);
+  const ctx=canvas.getContext('2d');
+  const img=ctx.createImageData(40,40);
+  for(let i=0;i<1600;i++){
+    const on=pixels[i]==='1';
+    const color=invert?(on?C_OFF:C_ON):(on?C_ON:C_OFF);
+    img.data[i*4]=color[0];
+    img.data[i*4+1]=color[1];
+    img.data[i*4+2]=color[2];
+    img.data[i*4+3]=255;
+  }
+  ctx.putImageData(img,0,0);
+}
+
+function drawBoth(pixels){
+  drawCanvas('canvas-normal',pixels,false);
+  drawCanvas('canvas-neg',pixels,true);
+}
+
+function drawShareCard(id,pixels){
+  const canvas=document.getElementById('share-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=400;canvas.height=400;
+
+  // BG dark
+  ctx.fillStyle='#1a1b1c';
+  ctx.fillRect(0,0,400,400);
+
+  // Grid overlay
+  ctx.strokeStyle='rgba(227,229,228,0.04)';
+  ctx.lineWidth=1;
+  for(let x=0;x<=400;x+=32){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,400);ctx.stroke();}
+  for(let y=0;y<=400;y+=32){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(400,y);ctx.stroke();}
+
+  // Draw negative normie — centered, 240x240
+  const offscreen=document.createElement('canvas');
+  offscreen.width=40;offscreen.height=40;
+  const octx=offscreen.getContext('2d');
+  const img=octx.createImageData(40,40);
+  for(let i=0;i<1600;i++){
+    const on=pixels[i]==='1';
+    const color=on?C_OFF:C_ON;
+    img.data[i*4]=color[0];img.data[i*4+1]=color[1];img.data[i*4+2]=color[2];img.data[i*4+3]=255;
+  }
+  octx.putImageData(img,0,0);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(offscreen,80,60,240,240);
+
+  // Border around normie
+  ctx.strokeStyle='rgba(227,229,228,0.1)';
+  ctx.lineWidth=1;
+  ctx.strokeRect(80,60,240,240);
+
+  // Labels
+  ctx.fillStyle='#e3e5e4';
+  ctx.font='bold 13px "Share Tech Mono", monospace';
+  ctx.letterSpacing='0.1em';
+  ctx.fillText('NORMIE #'+String(id).padStart(4,'0'),80,330);
+
+  ctx.fillStyle='#6a6c6c';
+  ctx.font='10px "Share Tech Mono", monospace';
+  ctx.fillText('■ NEGATIVE  //  NORMIES.ART',80,352);
+
+  // Top label
+  ctx.fillStyle='rgba(196,154,56,0.7)';
+  ctx.font='9px "Share Tech Mono", monospace';
+  ctx.fillText('■ NORMIES // NEGATIVE',80,44);
+}
+
+function download(type){
+  if(!currentPixels)return;
+  // Draw at 400x400
+  const offscreen=document.createElement('canvas');
+  offscreen.width=400;offscreen.height=400;
+  const ctx=offscreen.getContext('2d');
+  const small=document.createElement('canvas');
+  small.width=40;small.height=40;
+  const sctx=small.getContext('2d');
+  const img=sctx.createImageData(40,40);
+  const invert=type==='neg';
+  for(let i=0;i<1600;i++){
+    const on=currentPixels[i]==='1';
+    const color=invert?(on?C_OFF:C_ON):(on?C_ON:C_OFF);
+    img.data[i*4]=color[0];img.data[i*4+1]=color[1];img.data[i*4+2]=color[2];img.data[i*4+3]=255;
+  }
+  sctx.putImageData(img,0,0);
+  ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(small,0,0,400,400);
+  const a=document.createElement('a');
+  a.download='normie-'+String(currentId).padStart(4,'0')+'-'+(invert?'negative':'original')+'.png';
+  a.href=offscreen.toDataURL('image/png');
+  a.click();
+}
+
+function downloadShare(){
+  const canvas=document.getElementById('share-canvas');
+  const a=document.createElement('a');
+  a.download='normie-'+String(currentId).padStart(4,'0')+'-share-card.png';
+  a.href=canvas.toDataURL('image/png');
+  a.click();
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter') loadNormie();
+});
+</script>
+</body>
+</html>
